@@ -12,14 +12,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
-        val viewPager = findViewById<ViewPager2>(R.id.viewPager)
+        val viewPager: ViewPager2 = findViewById(R.id.viewPager)
+        val tabLayout: TabLayout = findViewById(R.id.tabLayout)
 
-        val adapter = MainPagerAdapter(this)
-        viewPager.adapter = adapter
+        // Установка адаптера для ViewPager
+        viewPager.adapter = MainPagerAdapter(this)
 
+        // Настройка TabLayout с ViewPager
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = if (position == 0) "Задачи" else "Алгоритмы"
+            tab.text = when (position) {
+                0 -> "Задачи"
+                1 -> "Алгоритмы"
+                else -> null
+            }
         }.attach()
     }
 }
