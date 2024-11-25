@@ -1,15 +1,17 @@
 package com.example.tasksmaster.ui.algorithms
 
+import AlgorithmsAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tasksmaster.R
-import com.example.tasksmaster.adapter.AlgorithmsAdapter
+import com.example.tasksmaster.model.Algorithm
 import com.example.tasksmaster.viewmodel.AlgorithmsViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -41,7 +43,17 @@ class AlgorithmsFragment : Fragment() {
         }
 
         fab.setOnClickListener {
-            // TODO: Реализовать показ диалогового окна для добавления алгоритма
+            val dialog = AddAlgorithmDialog { algorithmName, subtasks ->
+                val algorithm = Algorithm(
+                    name = algorithmName,
+                    subtasks = subtasks // Это список подзадач
+                )
+                viewModel.addAlgorithm(algorithm) // Передаем объект Algorithm
+            }
+            dialog.show(parentFragmentManager, "AddAlgorithmDialog")
+
         }
+
+
     }
 }

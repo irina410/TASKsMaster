@@ -27,4 +27,13 @@ class AlgorithmsViewModel(application: Application) : AndroidViewModel(applicati
         _algorithms.value = currentList
         repository.saveAlgorithms(currentList)
     }
+//    fun addAlgorithm(name: String, subtasks: List<Pair<String, Long>>) {
+//
+//        val totalDuration = subtasks.sumOf { it.second } // Суммируем время всех подзадач
+//
+//        val algorithm = Algorithm(name, totalDuration, subtasks) // Создаем объект
+//        addAlgorithm(algorithm) // Вызываем основной метод
+//    }
+
+
 }
